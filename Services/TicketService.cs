@@ -33,14 +33,20 @@ namespace ParkingLot.Services
             }
         }
 
-        void ITicketService.DeleteTicket(Injector injector, List<Ticket> tickets, Ticket ticket)
+        public Ticket GenerateTicket(Injector injector, Slot freeSlot, Vechile vechile)
         {
-            throw new NotImplementedException();
+            List<Ticket> tickets = injector.ReadTickets();
+            DateTime inTime = DateTime.Now;
+            Ticket ticket = new Ticket(freeSlot.name, vechile.number, inTime);
+            tickets.Add(ticket);
+            injector.SaveTickets(tickets);
+            return ticket;
+        }
+        public void DeleteTicket(Injector injector, List<Ticket> tickets, Ticket ticket)
+        {
+            tickets.Remove(ticket);
+            injector.SaveTickets(tickets);
         }
 
-        Ticket ITicketService.GenerateTicket(Injector injector, Slot freeSlot, Vechile vechile)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
