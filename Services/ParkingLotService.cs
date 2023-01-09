@@ -37,21 +37,21 @@ namespace ParkingLot.Services
         }
 
 
-        public List<Slot> InitializeLot(Injector injector, int twoWheelerSlots, int fourWheelerSlots, int heavyVechileSlots)
+        public List<Slot> InitializeLot(Injector injector, int twoWHEELERSlots, int fourWHEELERSlots, int heavyVechileSlots)
         {
 
             List<Slot> slots = new List<Slot>();
             string name;
-            for (int i = 0; i < twoWheelerSlots; i++)
+            for (int i = 0; i < twoWHEELERSlots; i++)
             {
                 name = $"TWO{i + 1}";
-                slots.Add(new Slot(name, "2Wheeler", false));
+                slots.Add(new Slot(name, "2WHEELER", false));
             }
 
-            for (int i = 0; i < fourWheelerSlots; i++)
+            for (int i = 0; i < fourWHEELERSlots; i++)
             {
                 name = $"FOUR{i + 1}";
-                slots.Add(new Slot(name, "4Wheeler", false));
+                slots.Add(new Slot(name, "4WHEELER", false));
             }
 
             for (int i = 0; i < heavyVechileSlots; i++)
@@ -64,14 +64,41 @@ namespace ParkingLot.Services
             return slots;
         }
 
-        string IParkingLotService.ParkVechile(Injector injector, List<Slot> slots, Vechile vechile)
+        public string ParkVechile(Injector injector, List<Slot> slots, Vechile vechile)
         {
-            throw new NotImplementedException();
+
+            Slot freeSlot = slots.FirstOrDefault(s => s.category == vechile.category && s.isOccupied == false);
+            if (freeSlot == null)
+            {
+                return "No slots available";
+            }
+
+            freeSlot.isOccupied = true;
+            injector.SaveSlots(slots);
+            Ticket ticket = injector.GenerateTicket(freeSlot, vechile);
+            //ticket string
+            return $"VECHILE NUMBER : {ticket.vechileNumber} \nSLOT NAME : {ticket.slotName} \nIN TIME : {ticket.inTime} \nOUT TIME : -";
         }
 
-        string IParkingLotService.UnParkVechile(Injector injector, List<Slot> slots, string number)
-        {
-            throw new NotImplementedException();
+        public string UnParkVechile(Injector injector, List<Slot> slots, string number)
+        { 
+
+            List<Ticket> tickets = injector.ReadTickets();
+
+            Ticket ticket = tickets.FirstOrDefault(t => t.vechileNumber == number);
+            if (ticket == null)
+            {
+                return "Vechile not found";
+            }
+            slots.FirstOrDefault(s => s.name == ticket.slotName).isOccupied = false;
+            injector.SaveSlots(slots);
+
+            DateTime outTime = DateTime.Now;
+            string msg = $"VECHILE NUMBER : {ticket.vechileNumber} \nSLOT NAME : {ticket.slotName} \nIN TIME : {ticket.inTime} \nOUT TIME : {outTime}";
+
+            injector.DeleteTicket(tickets, ticket);
+
+            return msg;
         }
     }
 }
