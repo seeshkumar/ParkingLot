@@ -1,32 +1,32 @@
 ﻿[
   {
     "name": "TWO1",
-    "category": "2Wheeler",
-    "ocupied": false
+    "category": "2WHEELER",
+    "isOcupied": false
   },
   {
     "name": "TWO2",
-    "category": "2Wheeler",
-    "ocupied": false
+    "category": "2WHEELER",
+    "isOcupied": false
   },
   {
     "name": "FOUR1",
-    "category": "4Wheeler",
-    "ocupied": false
+    "category": "4WHEELER",
+    "isOcupied": false
   },
   {
     "name": "FOUR2",
-    "category": "4Wheeler",
-    "ocupied": false
+    "category": "4WHEELER",
+    "isOcupied": false
   },
   {
     "name": "HEAVY1",
     "category": "HEAVY",
-    "ocupied": false
+    "isOcupied": false
   },
   {
     "name": "HEAVY2",
     "category": "HEAVY",
-    "ocupied": false
+    "isOcupied": false
   }
 ]

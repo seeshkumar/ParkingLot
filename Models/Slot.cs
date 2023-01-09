@@ -10,14 +10,14 @@ namespace ParkingLot.Models
     {
         public string name { get; set; }
         public string category { get; set; }
-        public Boolean occupied { get; set; }
+        public Boolean isOccupied { get; set; }
 
 
         public Slot(string name, string category, bool occupied)
         {
             this.name = name;
             this.category = category;
-            this.occupied = occupied;
+            this.isOccupied = occupied;
         }
     }
 }
