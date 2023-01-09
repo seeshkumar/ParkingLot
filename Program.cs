@@ -5,6 +5,12 @@ using System.Runtime.CompilerServices;
 
 class Program
 {
+    enum MailType
+    {
+        Html,
+        PlainText,
+        Attachment
+    }
     public static void Main(String[] args)
     {
         int mode;
@@ -57,7 +63,7 @@ class Program
                 slots = injector.ReadSlots();
                 Console.Write("Vechile number : ");
                 number = Console.ReadLine();
-                Console.WriteLine("Category(2WHEELER/ 4WHEELER/ HEAVY) :");
+                Console.WriteLine("Category(TWOWHEELER/ FOURWHEELER/ HEAVY) :");
                 category = Console.ReadLine();
                 msg = injector.ParkVechile(slots, new Vechile(number, category));
                 Console.WriteLine("----------- TICKET -----------");

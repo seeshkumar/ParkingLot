@@ -1,22 +1,22 @@
 ﻿[
   {
     "name": "TWO1",
-    "category": "2WHEELER",
+    "category": "TWOWHEELER",
     "isOcupied": false
   },
   {
     "name": "TWO2",
-    "category": "2WHEELER",
+    "category": "TWOWHEELER",
     "isOcupied": false
   },
   {
     "name": "FOUR1",
-    "category": "4WHEELER",
+    "category": "FOURWHEELER",
     "isOcupied": false
   },
   {
     "name": "FOUR2",
-    "category": "4WHEELER",
+    "category": "FOURWHEELER",
     "isOcupied": false
   },
   {

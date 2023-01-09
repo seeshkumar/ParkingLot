@@ -14,6 +14,7 @@ namespace ParkingLot.Services
     class ParkingLotService : IParkingLotService
     {
 
+
         public List<Slot> ReadSlots()
         {
             string slotsJson = File.ReadAllText("./assets/slots.json");
@@ -42,21 +43,21 @@ namespace ParkingLot.Services
 
             List<Slot> slots = new List<Slot>();
             string name;
-            for (int i = 0; i < twoWHEELERSlots; i++)
+            for (int index = 0; index < twoWHEELERSlots; index++)
             {
-                name = $"TWO{i + 1}";
-                slots.Add(new Slot(name, "2WHEELER", false));
+                name = $"TWO{index + 1}";
+                slots.Add(new Slot(name, "TWOWHEELER", false));
             }
 
-            for (int i = 0; i < fourWHEELERSlots; i++)
+            for (int index = 0; index < fourWHEELERSlots; index++)
             {
-                name = $"FOUR{i + 1}";
-                slots.Add(new Slot(name, "4WHEELER", false));
+                name = $"FOUR{index + 1}";
+                slots.Add(new Slot(name, "FOURWHEELER", false));
             }
 
-            for (int i = 0; i < heavyVechileSlots; i++)
+            for (int index = 0; index < heavyVechileSlots; index++)
             {
-                name = $"HEAVY{i + 1}";
+                name = $"HEAVY{index + 1}";
                 slots.Add(new Slot(name, "HEAVY", false));
             }
             injector.SaveSlots(slots);
