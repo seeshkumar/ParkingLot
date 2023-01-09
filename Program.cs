@@ -13,6 +13,9 @@ class Program
         Injector injector = new Injector(parkingLotService, ticketService);
         List<Slot> slots;
         List<Ticket> tickets;
+        string number;
+        string category;
+        string msg;
 
 
         Console.WriteLine("1.Initialize a parking lot.\n2.See Parking Lot current occupancy details.\n3.Park Vehicle and Issue Ticket.\n4.Un-park Vehicle.   :");
@@ -39,7 +42,7 @@ class Program
                 {
                     Console.WriteLine("--------------------------------------");
                     Console.WriteLine($"SLOT : {slot.name}\nSLOT CATEGORY : {slot.category}");
-                    if (slot.occupied == false)
+                    if (slot.isOccupied == false)
                     {
                         Console.WriteLine("-- EMPTY SLOT --");
                     }
@@ -51,8 +54,24 @@ class Program
                 }
                 break;
             case 3:
+                slots = injector.ReadSlots();
+                Console.Write("Vechile number : ");
+                number = Console.ReadLine();
+                Console.WriteLine("Category(2WHEELER/ 4WHEELER/ HEAVY) :");
+                category = Console.ReadLine();
+                msg = injector.ParkVechile(slots, new Vechile(number, category));
+                Console.WriteLine("----------- TICKET -----------");
+                Console.WriteLine(msg);
+                Console.WriteLine("------------------------------");
                 break;
             case 4:
+                slots = injector.ReadSlots();
+                Console.Write("Vechile number : ");
+                number = Console.ReadLine();
+                msg = injector.UnParkVechile(slots, number);
+                Console.WriteLine("----------- TICKET -----------");
+                Console.WriteLine(msg);
+                Console.WriteLine("------------------------------");
                 break;
             default:
                 break;
